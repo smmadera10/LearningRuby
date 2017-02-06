@@ -1,0 +1,28 @@
+<% if @page.errors.any? %>
+<h3><color=red>Error creating article</color></h3>
+<% @page.errors.full_messages.each do |error| %>
+
+<ul>
+  <li><%= error %></li>
+</ul>
+
+<% end %>
+<% end %>
+
+<%= form_for @page do |f| %>
+<p>
+  <%= f.label :title %><br/>
+  <%= f.text_field :title %>
+  
+  <p>
+    <%= f.label :description %><br/>
+    <%= f.text_area :description %>
+    
+  </p>
+  
+    <p>
+    <%= f.submit %>
+  </p>
+  <% end %>
+  
+    <%= link_to "Back to All Pages", pages_path %>

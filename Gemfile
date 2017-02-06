@@ -48,9 +48,11 @@ group :development do
   gem 'spring'
 end
 
+#To be able to get it on Heroku
 group :production do
   
   gem 'pg'
     gem 'rails_12factor'
+    
 end
 

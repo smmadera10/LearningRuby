@@ -1,0 +1,21 @@
+<h3>List of Pages</h3>
+
+<br/>  <%=  link_to "Create New Page", new_page_path %> <br/>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+<% @pages.each do |p| %>
+  <tr>
+    <td><%= p.title %> </td>
+    <td><%= p.description %></td>
+    <td><%= link_to "Show", page_path(p) %> </td>
+    <td><%= link_to "Edit", edit_page_path(p) %></td>
+    <td><%= link_to "Delete", page_path(p), method: :delete, data: {confirm: "O rly?" } %></td>
+  </tr>
+<% end %>
+</table>
+<br/>
+<%= link_to "Homepage", root_path %>
