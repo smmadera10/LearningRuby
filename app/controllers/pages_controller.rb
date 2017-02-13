@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  before_action :set_page, only: [:edit, :update, :destroy, :show]
   
   def homepage
     
@@ -10,7 +11,7 @@ class PagesController < ApplicationController
   end
   
   def destroy
-    @page = Page.find(params[:id])
+   # @page = Page.find(params[:id])
     @page.destroy
     flash[:notice] = "The page titled #{@page.title} was deleted"
     redirect_to pages_path
@@ -26,9 +27,6 @@ class PagesController < ApplicationController
   end
   
   def create
-    
-   # render plain: params[:page].inspect
-   @page = Page.new(page_params)
     if @page.save
       flash[:notice] = "Page was succesfully created!"
       redirect_to page_path(@page)
@@ -38,15 +36,15 @@ class PagesController < ApplicationController
   end
   
   def show
-    @page = Page.find(params[:id])
+   # set_page
   end
   
   def edit
-    @page = Page.find(params[:id])  
+    #set_page  
   end
   
   def update
-    @page = Page.find(params[:id])
+    #set_page
     if @page.update(page_params)
       flash[:notice] = "Update succesful"
       redirect_to page_path(@page)
@@ -59,6 +57,10 @@ class PagesController < ApplicationController
   private
   def page_params
     params.require(:page).permit(:title, :description)
+  end
+  
+  def set_page
+    @page = Page.find(params[:id])
   end
   
 end
